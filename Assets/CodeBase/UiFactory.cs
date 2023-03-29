@@ -11,10 +11,13 @@ namespace CodeBase
 
         [HideInInspector] public GameObject activeUI;
 
-        public void SpawnStartUi()
-        {
+        public void SpawnStartUi() => 
             activeUI = Instantiate(startUI, canvas);
-        }
-        
+
+        public void SpawnLoseUi() => 
+            activeUI = Instantiate(loseUI, canvas);
+
+        public void SpawnWinUI() => 
+            activeUI = Instantiate(winUI, canvas);
     }
 }

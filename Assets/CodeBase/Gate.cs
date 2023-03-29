@@ -33,7 +33,7 @@ namespace CodeBase
                 else if (typeGate == TypeGate.Multiplier)
                     crowdSpawner.SpawnAroundPoint(crowdSpawner.totalCount * multiplierCrowd);
                 
-                _crowdAnimator.ResetAnimationRun();
+                _crowdAnimator.ResetAnimation();
                 _crowdAnimator.PlayRun();
             }
         }

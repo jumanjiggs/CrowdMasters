@@ -10,7 +10,7 @@ namespace CodeBase
         private static readonly int Run = Animator.StringToHash("Run");
         
 
-        public void ResetAnimationRun()
+        public void ResetAnimation()
         {
             foreach (var character in crowd)
             {
@@ -18,16 +18,17 @@ namespace CodeBase
                 character.Update(0f);
             }
         }
-
+        
         public void PlayRun()
         {
-            foreach (var character in crowd)
-            {
+            foreach (var character in crowd) 
                 character.SetTrigger(Run);
-            }
         }
         
         public void AddToList(Animator character) => 
             crowd.Add(character);
+        
+        public void RemoveFromList(Animator character) => 
+            crowd.Remove(character);
     }
 }

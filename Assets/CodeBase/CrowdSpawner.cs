@@ -1,29 +1,31 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase
 {
     public class CrowdSpawner : MonoBehaviour
     {
         public GameObject characterPrefab;
-        public CrowdAnimator animator;
         public float radius;
         public float radiusRate;
         public int totalCount;
         public int startCount;
         public int countAdd;
 
-        private int _startCrowd = 3;
+        [Inject] private CrowdAnimator _animator;
+        [Inject] private DiContainer _diContainer;
+        
+        private const int StartCrowd = 3;
 
         private void Start()
         {
-            SpawnAroundPoint(_startCrowd);
+            SpawnAroundPoint(StartCrowd);
         }
 
         public void SpawnAroundPoint(int total)
         {
             totalCount = 0;
-            
             while (totalCount < total)
             {
                 for (int j = 0; j < startCount; j++)
@@ -33,8 +35,8 @@ namespace CodeBase
                     float horizontal = MathF.Cos(radians);
                     Vector3 spawnDir = new Vector3(horizontal, 0, vertical);
                     Vector3 spawnPos = transform.position + spawnDir * radius;
-                    GameObject currentCharacter = Instantiate(characterPrefab, spawnPos, Quaternion.identity, transform);
-                    animator.AddToList(currentCharacter.GetComponentInChildren<Animator>());
+                    GameObject currentCharacter =_diContainer.InstantiatePrefab(characterPrefab, spawnPos, Quaternion.identity, transform);
+                    _animator.AddToList(currentCharacter.GetComponentInChildren<Animator>());
                     totalCount++;
                     if(totalCount >= total)
                         break;

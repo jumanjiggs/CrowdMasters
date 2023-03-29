@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace CodeBase
+namespace CodeBase.Infrastructure.Services.Player
 {
     public class RegisterGroupMovement : MonoInstaller
     {
