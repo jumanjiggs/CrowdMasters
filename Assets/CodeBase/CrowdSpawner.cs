@@ -13,15 +13,17 @@ namespace CodeBase
         public int startCount;
         public int countAdd;
 
+        private int _startCrowd = 3;
+
         private void Start()
         {
-            SpawnAroundPoint(3);
+            SpawnAroundPoint(_startCrowd);
         }
 
         public void SpawnAroundPoint(int total)
         {
             totalCount = 0;
-
+            
             while (totalCount < total)
             {
                 for (int j = 0; j < startCount; j++)
@@ -39,7 +41,6 @@ namespace CodeBase
                 }
                 startCount += countAdd;
                 radius += radiusRate;
-                animator.ResetAnimationRun();
             }
         }
         

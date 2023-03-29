@@ -7,12 +7,23 @@ namespace CodeBase
     {
         public List<Animator> crowd;
         
+        private static readonly int Run = Animator.StringToHash("Run");
+        
+
         public void ResetAnimationRun()
         {
             foreach (var character in crowd)
             {
                 character.Rebind();
                 character.Update(0f);
+            }
+        }
+
+        public void PlayRun()
+        {
+            foreach (var character in crowd)
+            {
+                character.SetTrigger(Run);
             }
         }
         

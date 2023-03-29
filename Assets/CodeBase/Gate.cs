@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace CodeBase
 {
@@ -15,6 +16,14 @@ namespace CodeBase
         [SerializeField] private int increaseCrowd;
         [SerializeField] private int multiplierCrowd;
 
+        private CrowdAnimator _crowdAnimator;
+
+        [Inject]
+        private void Construct(CrowdAnimator crowdAnimator)
+        {
+            _crowdAnimator = crowdAnimator;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out CrowdSpawner crowdSpawner))
@@ -23,6 +32,9 @@ namespace CodeBase
                     crowdSpawner.SpawnAroundPoint(increaseCrowd);
                 else if (typeGate == TypeGate.Multiplier)
                     crowdSpawner.SpawnAroundPoint(crowdSpawner.totalCount * multiplierCrowd);
+                
+                _crowdAnimator.ResetAnimationRun();
+                _crowdAnimator.PlayRun();
             }
         }
     }

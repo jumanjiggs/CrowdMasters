@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace CodeBase
+﻿namespace CodeBase
 {
     public static class Constants 
     {
