@@ -15,6 +15,7 @@ namespace CodeBase
 
         [Inject] private CrowdAnimator _animator;
         [Inject] private DiContainer _diContainer;
+        [Inject] private UiFactory _uiFactory;
         
         private const int StartCrowd = 3;
 
@@ -38,6 +39,7 @@ namespace CodeBase
                     GameObject currentCharacter =_diContainer.InstantiatePrefab(characterPrefab, spawnPos, Quaternion.identity, transform);
                     _animator.AddToList(currentCharacter.GetComponentInChildren<Animator>());
                     totalCount++;
+                    _uiFactory.UpdateCrowdCount(_animator.crowd.Count);
                     if(totalCount >= total)
                         break;
                 }

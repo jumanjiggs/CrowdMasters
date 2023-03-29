@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace CodeBase
 {
@@ -7,6 +8,7 @@ namespace CodeBase
         [SerializeField] private GameObject startUI;
         [SerializeField] private GameObject winUI;
         [SerializeField] private GameObject loseUI;
+        [SerializeField] private TextMeshPro countCrowd;
         [SerializeField] private Transform canvas;
 
         [HideInInspector] public GameObject activeUI;
@@ -19,5 +21,10 @@ namespace CodeBase
 
         public void SpawnWinUI() => 
             activeUI = Instantiate(winUI, canvas);
+
+        public void UpdateCrowdCount(int count)
+        {
+            countCrowd.text = count.ToString();
+        }
     }
 }

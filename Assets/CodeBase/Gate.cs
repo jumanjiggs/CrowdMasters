@@ -31,7 +31,7 @@ namespace CodeBase
                 if (typeGate == TypeGate.Increase)
                     crowdSpawner.SpawnAroundPoint(increaseCrowd);
                 else if (typeGate == TypeGate.Multiplier)
-                    crowdSpawner.SpawnAroundPoint(crowdSpawner.totalCount * multiplierCrowd);
+                    crowdSpawner.SpawnAroundPoint(_crowdAnimator.crowd.Count * multiplierCrowd);
                 
                 _crowdAnimator.ResetAnimation();
                 _crowdAnimator.PlayRun();
