@@ -1,18 +1,18 @@
-﻿using UnityEngine;
+﻿using CodeBase.Crowd;
+using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace CodeBase.Infrastructure.Services.Player
 {
     public class RegisterSpawner : MonoInstaller
     {
-        [SerializeField] private CrowdSpawner crowdSpawner;
+        [FormerlySerializedAs("crowdSpawner")] [SerializeField] private CrowdControl crowdControl;
 
-        public override void InstallBindings()
-        {
+        public override void InstallBindings() => 
             BindSpawner();
-        }
 
         private void BindSpawner() => 
-            Container.Bind<CrowdSpawner>().FromInstance(crowdSpawner).AsSingle().NonLazy();
+            Container.Bind<CrowdControl>().FromInstance(crowdControl).AsSingle().NonLazy();
     }
 }

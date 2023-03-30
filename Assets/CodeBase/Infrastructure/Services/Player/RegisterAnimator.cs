@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Crowd;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase
@@ -7,10 +8,8 @@ namespace CodeBase
     {
         [SerializeField] private CrowdAnimator crowdAnimator;
 
-        public override void InstallBindings()
-        {
+        public override void InstallBindings() => 
             BindAnimator();
-        }
 
         private void BindAnimator() => 
             Container.Bind<CrowdAnimator>().FromInstance(crowdAnimator).AsSingle().NonLazy();
